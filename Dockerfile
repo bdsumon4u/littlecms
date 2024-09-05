@@ -6,9 +6,10 @@
 # https://serversideup.net/open-source/docker-php/
 FROM serversideup/php:8.3-fpm-nginx-alpine AS base
 
-## Uncomment if you need to install additional PHP extensions
-# USER root
-# RUN install-php-extensions bcmath gd
+# Uncomment if you need to install additional PHP extensions
+USER root
+RUN install-php-extensions intl opcache pcntl pdo_mysql pdo_pgsql redis sodium zip
+RUN docker-php-ext-enable intl opcache pcntl pdo_mysql pdo_pgsql redis sodium zip
 
 ############################################
 # Development Image
