@@ -117,55 +117,25 @@
         <section class="home">
             <div class="home-data">
 			   <div class="home-inner owl-carousel">
+					@foreach($slides as $slide)
 					<div class="item">
 					    <div class="home-image">
-							<img src="images/slider/s4.jpg" alt="" class="img-fluid">
+							<img src="/storage/{{$slide->image}}" alt="{{$slide->heading}}" class="img-fluid">
 						</div>
 						<div class="home-detail">
-						    <h3>our best practices</h3>
-							<h1 class="home-title">Beauty & Spa</h1>
+						    <h3>{{$slide->title}}</h3>
+							<h1 class="home-title">{{$slide->heading}}</h1>
 							<p class="mb-4">
-								Lorem Ipsum is simply dummy text of the printing and typesetting
-								industry. <br> Vivamus sodales varius sagittis.
-							 </p>
+								{{$slide->paragraph}}
+							</p>
+							@if($slide->button_text)
 							<div class="home-button">
-								<a href="#" class="btn custom-btn common-transition">Visit Now 
-								</a>
+								<a href="{{$slide->button_url}}" class="btn custom-btn common-transition">{{$slide->button_text}}</a>
 							</div>
+							@endif
 						</div>
 					</div>
-					<div class="item">
-					    <div class="home-image">
-							<img src="images/slider/s2.jpg" alt="" class="img-fluid">
-						</div>
-						<div class="home-detail">
-							<h3>our best practices</h3>
-							<h1 class="home-title">Facial & Therapy</h1>
-							<p class="mb-4">
-								Lorem Ipsum is simply dummy text of the printing and typesetting
-								industry. <br> Vivamus sodales varius sagittis.
-							 </p>
-							<div class="home-button">
-								<a href="#" class="btn custom-btn common-transition">Visit Now </a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-					    <div class="home-image">
-							<img src="images/slider/s3.jpg" alt="" class="img-fluid">
-						</div>
-						<div class="home-detail">
-							<h3>our best practices</h3>
-							<h1 class="home-title">body massage</h1>
-							<p class="mb-4">
-								Lorem Ipsum is simply dummy text of the printing and typesetting
-								industry. <br> Vivamus sodales varius sagittis.
-							 </p>
-							<div class="home-button">
-								<a href="#" class="btn custom-btn common-transition">Visit Now </a>
-							</div>
-						</div>
-					</div>
+					@endforeach
 				</div>					
             </div> 		
         </section>
