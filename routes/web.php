@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Media;
 use App\Models\Person;
 use App\Models\Service;
 use App\Models\Slide;
@@ -12,5 +13,6 @@ Route::get('/', function () {
         'services' => Service::all(),
         'people' => Person::all(),
         'testimonials' => Testimonial::all(),
+        'gallery' => Media::query()->get()->groupBy('group'),
     ]);
 });

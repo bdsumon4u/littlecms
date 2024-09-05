@@ -341,53 +341,36 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="button-group filter-button-group">
 							<button class="active show_all" data-filter="*">show all</button>
-							<button class="#" data-filter=".massage">Massage</button>
-							<button class="#" data-filter=".facial">Facials</button>
-							<button class="#" data-filter=".waxing">Waxing</button>
-							<button class="" data-filter=".relaxation">Relaxation</button>
+							@foreach($gallery as $group => $items)
+								<button class="#" data-filter=".{{$group}}">{{$group}}</button>
+							@endforeach
 						</div>
 					</div>
                 </div>
 				<div class="row mt-5">
 					<div class="tab-grid">
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item massage">
-							<div class="portfolio-image">
-								<img src="images/gallery/p1.jpg" class="common-transition img-fluid" alt=""><a href="images/gallery/p1.jpg" class="img-zoom"><i class="fa fa-search" aria-hidden="true"></i></a>
-							</div>
-						</div>
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item facial">
-							<div class="portfolio-image">
-								<img src="images/gallery/p2.jpg" class="common-transition img-fluid" alt=""><a href="images/gallery/p2.jpg" class="img-zoom"><i class="fa fa-search" aria-hidden="true"></i></a>
-							</div>
-						</div>
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item facial">
-							<div class="portfolio-image">
-								<img src="images/gallery/p3.jpg" class="common-transition img-fluid" alt=""><a href="images/gallery/p3.jpg" class="img-zoom"><i class="fa fa-search" aria-hidden="true"></i></a>
-							</div>
-						</div>	
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item waxing">
-							<div class="portfolio-image">
-								<img src="images/gallery/p4.jpg" class="common-transition img-fluid" alt=""><a href="images/gallery/p4.jpg" class="img-zoom"><i class="fa fa-search" aria-hidden="true"></i></a>
-							</div>
-						</div>							
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item relaxation">
-							<div class="portfolio-image">
-								<img src="images/gallery/p5.jpg" class="common-transition img-fluid" alt=""><a href="images/gallery/p5.jpg" class="img-zoom"><i class="fa fa-search" aria-hidden="true"></i></a>
-							</div>
-						</div>	
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item waxing">
-							<div class="portfolio-image">
-								<img src="images/gallery/p6.jpg" class="common-transition img-fluid" alt=""><a href="images/gallery/p6.jpg" class="img-zoom"><i class="fa fa-search" aria-hidden="true"></i></a>
-							</div>
-						</div>
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item facial">
-							<div class="portfolio-image">
-								<img src="images/gallery/p7.jpg" class="common-transition img-fluid" alt=""><a href="images/gallery/p7.jpg" class="img-zoom"><i class="fa fa-search" aria-hidden="true"></i></a>
-							</div>
-						</div>
+						@foreach($gallery as $group => $items)
+							@foreach($items as $media)
+								@if($media->type == 'image')
+								<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item {{$group}}">
+									<div class="portfolio-image">
+										<img src="/storage/{{$media->path}}" class="common-transition img-fluid" alt=""><a href="/storage/{{$media->path}}" class="img-zoom"><i class="fa fa-search" aria-hidden="true"></i></a>
+									</div>
+								</div>
+								@else
+								<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item {{$group}}">
+									<div class="portfolio-image">
+										@php($link = str_replace('watch?v=', 'embed/', $media->path))
+										<iframe width="100%" height="400" src="{{$link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+										<a target="_blank" href="{{$link}}"><i class="fa fa-search" aria-hidden="true"></i></a>
+									</div>
+								</div>
+								@endif
+							@endforeach
+						@endforeach
 					</div>
 				</div>
-				<div class="row mt-5">
+				<div class="row mt-5 d-none">
 					<div class="col-12">
 						<div class="home-button text-center">
 							<a href="#" class="btn custom-btn common-transition">View More 
