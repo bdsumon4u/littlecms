@@ -81,7 +81,7 @@
 						<li class="nav-item">
                             <a class="nav-link page-scroll" href="#gallery">Gallery</a>
                         </li>
-						<li class="nav-item">
+						<li class="nav-item d-none">
                             <a class="nav-link page-scroll" href="#blog">Blog</a>
                         </li>	
 						<li class="nav-item">
@@ -105,7 +105,7 @@
 					<li><a class="nav-link page-scroll" href="#pricing">pricing</a></li>
 					<li><a class="nav-link page-scroll" href="#client">Client</a></li>
 					<li><a class="nav-link page-scroll" href="#gallery">Gallery</a></li>
-					<li><a class="nav-link page-scroll" href="#blog">Blog</a></li>
+					<li class="d-none"><a class="nav-link page-scroll" href="#blog">Blog</a></li>
 					<li><a class="nav-link page-scroll" href="#appointment">Appointment</a></li>
 					<li><a class="nav-link page-scroll" href="#contact">Contact Now</a></li>
 				</ul>
@@ -389,7 +389,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="common-title">
                             <h2>Book Appontment</h2>
-                            <p class="common-desc mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non libero consectetur, blandit mauris eget, imperdiet nisl. Etiam commodo ex nec erat tempor varius.</p>
+                            <p class="common-desc mb-4 d-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non libero consectetur, blandit mauris eget, imperdiet nisl. Etiam commodo ex nec erat tempor varius.</p>
 							 <a href="#appointment" class="custom-btn two page-scroll btn common-transition">
 							      appoint Now
 						    </a>
@@ -401,7 +401,7 @@
         <!-- End Solution -->
 		
         <!-- Start Blog -->
-		<section class="section blog" id="blog">
+		<section class="section blog d-none" id="blog">
 			<div class="container">
 				<div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -497,21 +497,17 @@
 					</div>
 					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
 						<div class="appointment-form">
-							<form action="send_appointment_mail.php" method="post">
+							@if(session()->has('message'))
+							<div class="alert alert-success">
+								{{session('message')}}
+							</div>
+							@endif
+							<form action="/appointments" method="post">
+								@csrf
 								<div class="row">
-									<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-										<div class="form-group mt-2 mb-2">
-											<input name="fname" id="fname" type="text" class="form-control" placeholder="First Name*" required="">
-										</div>
-									</div>
-									<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-										<div class="form-group mt-2 mb-2">
-											<input name="lname" id="lname" type="text" class="form-control" placeholder="Last Name*" required="">
-										</div>
-									</div>
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 										<div class="form-group mt-2 mb-2">
-											<input name="email" id="email" type="email" class="form-control" placeholder="Your Email*" required="">
+											<input name="name" id="name" type="text" class="form-control" placeholder="Your Name*" required="">
 										</div>
 									</div>
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -521,18 +517,16 @@
 									</div>
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 										<div class="form-group mt-2 mb-2">
-											<input name="fdate" id="fdate" type="text" class="form-control" placeholder="Enter Date*" required="">
+											<input name="fdate" id="fdate" type="date" class="form-control" placeholder="Enter Date*" required="">
 											<i class="fa fa-calendar" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 										<div class="form-group mt-2 mb-2">
-											<select class="form-control" name="oselect" id="op-select">
-												<option>Select Service</option>
-												<option>Facial</option>
-												<option>Body Massage</option>
-												<option>Therapy</option>
-												<option>Body Relaxation</option>
+											<select class="form-control" name="service_id" id="service-id">
+												@foreach($services as $service)
+												<option value="{{$service->id}}">{{$service->title}}</option>
+												@endforeach
 											</select>
 										</div>
 									</div>
@@ -540,7 +534,7 @@
 								<div class="row">
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 										<div class="form-group mt-2 mb-2">
-											<textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Your message..."></textarea>
+											<textarea name="message" id="message" rows="4" class="form-control" placeholder="Your message..."></textarea>
 										</div>
 									</div>
 								</div>
@@ -638,7 +632,7 @@
 							<li><a href="#pricing"> Pricing</a></li>
 							<li><a href="#client"> Client</a></li>
 							<li><a href="#gallery"> Gallery</a></li>
-							<li><a href="#blog"> Blog</a></li>
+							<li class="d-none"><a href="#blog"> Blog</a></li>
 							<li><a href="#appointment"> Appointment</a></li>
 						</ul>
 					</div>
@@ -698,7 +692,7 @@
 							</ul>
 						 </div>	
 					</div>
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 d-none">
 						<div class="subscribe-inner">
 							<div class="s-form">
 								<form>

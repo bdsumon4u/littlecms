@@ -1960,6 +1960,7 @@ ul.custom-drop-menu.dropdown-menu li a {
     background: #fff;
     border: none;
     font-family: 'Open Sans';
+    font-variant: small-caps;
 }
 .appointment .appointment-form .form-control:focus {
     border: none;
