@@ -31,6 +31,13 @@ return [
                     'rows' => '3',
                     'required' => true,
                 ],
+                'map' => [
+                    'type' => TypeFieldEnum::Text->value,
+                    'label' => 'Google Map Embed Code',
+                    'placeholder' => 'Insert the <iframe> code here',
+                    'required' => false,
+                    'rules' => 'nullable',
+                ],
             ]
         ],
     ],

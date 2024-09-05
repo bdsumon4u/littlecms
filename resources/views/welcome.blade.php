@@ -171,7 +171,7 @@
             <div class="container">
                 <div class="row"> 
 					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-						<img src="/storage/{{setting('site_logo')}}" class="img-fluid rounded" alt="">
+						<img src="/storage/{{setting('site_logo')}}" class="img-fluid rounded" alt="Logo">
                     </div>                
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
 						<div class="about-title">
@@ -550,20 +550,24 @@
             </div>
         </section>
         <!-- End Appointment -->
+
+		@php($more = setting('more_configs'))
 		
+		@if($map = $more['map'] ?? '')
 		<!-- Start Map -->
         <div class="map" id="map">
             <div class="container-fluid p-0">
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="map-frame">
-							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198740.52767574266!2d-77.15466220779552!3d38.893779993408145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7c6de5af6e45b%3A0xc2524522d4885d2a!2sWashington%2C%20DC%2C%20USA!5e0!3m2!1sen!2sin!4v1610355352306!5m2!1sen!2sin" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+							{!! $map !!}
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- End Map -->
+		@endif
 		
         <!-- Start Footer -->	
 		<footer class="footer" id="contact">
@@ -571,11 +575,10 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="footer-logo text-center">
-							<img src="images/logo/logo.png" class="img-fluid" alt="">
+							<img src="/storage/{{setting('site_logo')}}" class="img-fluid" alt="">
 						</div>
 					</div>
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        @php($more = setting('more_configs'))
 						<div class="row">
 							<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
 								<div class="address text-center">
