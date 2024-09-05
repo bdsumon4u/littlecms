@@ -171,22 +171,16 @@
             <div class="container">
                 <div class="row"> 
 					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-						<img src="images/about/about.jpg" class="img-fluid rounded" alt="">
+						<img src="/storage/{{setting('site_logo')}}" class="img-fluid rounded" alt="">
                     </div>                
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
 						<div class="about-title">
 							<h3>Our Success Story</h3>
-                            <h2>15+ Year of Experience</h2>
+                            <h2>{{setting('site_name')}}</h2>
 						</div>
-						<p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non libero consectetur, blandit mauris eget, imperdiet nisl. Etiam commodo ex nec erat tempor varius. Nunc rutrum pretium nunc in malesuada. Curabitur mollis urna ac sapien vulputate, ut congue sapien vehicula. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
-						<p class="mt-3">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Sed non libero consectetur, blandit mauris eget, imperdiet
-							nisl. Etiam commodo ex nec erat tempor varius.
-							mus.
-						</p>
-						<a href="#" class="custom-btn btn common-transition">
-						   Know More
+						<p class="mt-3">{{setting('site_description')}}</p>
+						<a href="tel:{{setting('support_contact')}}" class="custom-btn btn common-transition">
+						   Contact Us
 						</a>
 					</div>					
                 </div>
@@ -197,7 +191,7 @@
 		<!-- Start Counter -->
 		<div class="section counter" id="counter">
 			<div class="container">
-				<div class="row">
+				<div class="row d-none">
 					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 counter-data one">
 						<div class="counterarea">
 							<div class="counter-icon"><i class="fa fa-smile-o" aria-hidden="true"></i></div>
