@@ -3,6 +3,7 @@
 use App\Models\Person;
 use App\Models\Service;
 use App\Models\Slide;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,5 +11,6 @@ Route::get('/', function () {
         'slides' => Slide::all(),
         'services' => Service::all(),
         'people' => Person::all(),
+        'testimonials' => Testimonial::all(),
     ]);
 });

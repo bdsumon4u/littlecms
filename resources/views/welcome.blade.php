@@ -305,60 +305,21 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="inner-testimonial owl-carousel">
+							@foreach($testimonials as $testimonial)
                             <div class="testimonial-data">
                                 <div class="mt-5">
 									<div class="testimonial-detail">
 									    <div class="testimonial-img">
-											<img src="images/testimonial/t1.png" alt="" class="img-fluid">
+											<img src="/storage/{{$testimonial->image}}" alt="{{$testimonial->name}}" class="img-fluid">
 										</div> 
-									    <span class="client-name text-center">Leena Lawrence</span>
+									    <span class="client-name text-center">{{$testimonial->name}}</span>
 									    <div class="testimonial-desc">									
-											<p class="client-review">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-												Sed non libero consectetur, blandit mauris eget, imperdiet nisl.
-												Etiam commodo ex nec erat tempor varius.
-												Lorem ipsum dolor 
-											</p>									
+											<p class="client-review">{{$testimonial->speech}}</p>									
 								        </div>
 									</div>
 							   </div>
                             </div>
-                             <div class="testimonial-data">
-                                <div class="mt-5">
-									<div class="testimonial-detail">
-									    <div class="testimonial-img">
-											<img src="images/testimonial/t2.png" alt="" class="img-fluid">
-									    </div> 
-										<span class="client-name text-center">Aliya Marker</span>
-										<div class="testimonial-desc">									
-											<p class="client-review">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-												Sed non libero consectetur, blandit mauris eget, imperdiet nisl.
-												Etiam commodo ex nec erat tempor varius.
-												Lorem ipsum dolor
-											</p>
-										</div>		
-									</div>
-								</div>
-                            </div>
-							<div class="testimonial-data">
-                                <div class="mt-5">
-									<div class="testimonial-detail">
-									    <div class="testimonial-img">
-											<img src="images/testimonial/t3.png" alt="" class="img-fluid">
-										</div> 
-										<span class="client-name text-center">Glenda Jarret</span>
-										<div class="testimonial-desc">									
-											<p class="client-review">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-												Sed non libero consectetur, blandit mauris eget, imperdiet nisl.
-												Etiam commodo ex nec erat tempor varius.
-												Lorem ipsum dolor 
-											</p>				
-										</div>
-									</div>
-							   </div>
-                            </div>							
+							@endforeach							
                         </div>
                     </div>
                 </div>
