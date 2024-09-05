@@ -145,48 +145,22 @@
 		<section class="section service" id="services">
 			<div class="container">
 				<div class="row">
+					@foreach($services as $service)
 					<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
 						<div class="service-data one">
 							<div class="service-image">
-								<img src="images/gallery/g1.jpg" class="common-transition img-fluid" alt="">
+								<img src="/storage/{{$service->image}}" class="common-transition img-fluid" alt="{{$service->title}}">
 							</div>
 							<div class="service-name">
-								<h3 class="m-0">Facial Treatment</h3>
-								<p>Lorem ipsum dolor sit amet, cons ectetur elit. Ves tibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor.</p>
-								<a href="#" class="custom-btn btn common-transition">
-							       Read More
+								<h3 class="m-0">{{$service->title}}</h3>
+								<p>{{$service->description}}</p>
+								<a href="tel:{{setting('support_phone')}}" class="custom-btn btn common-transition">
+							       Contact Us
 						        </a>
 							</div>
 						</div>						
 					</div>
-					<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-						<div class="service-data two active">
-							<div class="service-image">
-								<img src="images/gallery/g2.jpg" class="common-transition img-fluid" alt="">
-							</div>
-							<div class="service-name">
-								<h3 class="m-0">Special Therapy</h3>
-								<p>Lorem ipsum dolor sit amet, cons ectetur elit. Ves tibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor.</p>								
-								<a href="#" class="custom-btn btn common-transition">
-							       Read More
-						        </a>
-							</div>
-						</div>						
-					</div>
-					<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-						<div class="service-data three">
-							<div class="service-image">
-								<img src="images/gallery/g3.jpg" class="common-transition img-fluid" alt="">
-							</div>
-							<div class="service-name">
-								<h3 class="m-0">Body Massage</h3>
-								<p>Lorem ipsum dolor sit amet, cons ectetur elit. Ves tibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor.</p>
-								<a href="#" class="custom-btn btn common-transition">
-							       Read More
-						        </a>
-							</div>
-						</div>						
-					</div>
+					@endforeach
 				</div>
 			</div>
 		</section>
@@ -343,90 +317,22 @@
                     </div>
                 </div>
                 <div class="row">
+					@foreach($services as $service)
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="pricing-data mt-5">
                             <div class="pricing-image">
 							    <div class="pricing-image-box"> 
-									<img src="images/pricing/p1.jpg" class="img-fluid common-transition" alt="">
+									<img src="/storage/{{$service->image}}" class="img-fluid common-transition" alt="{{$service->title}}">
 								</div>
                             </div>
                             <div class="pricing-desc">
-                                <h3>Body Massage</h3>
-								<p>Lorem Ipsum is simply the printing industry.</p>
-								<span class="price">$12</span>
+                                <h3>{{$service->title}}</h3>
+								<p>{{$service->duration}}</p>
+								<span class="price">{{$service->price}}</span>
 							</div>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="pricing-data mt-5">
-                            <div class="pricing-image">
-                                <div class="pricing-image-box"> 
-									<img src="images/pricing/p2.jpg" class="img-fluid common-transition" alt="">
-								</div>
-                            </div>
-                            <div class="pricing-desc">
-                                <h3>Massage Therapy</h3>
-								<p>Lorem Ipsum is simply the printing industry.</p>
-								<span class="price">$20</span>
-							</div>
-                        </div>
-                    </div>
-					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="pricing-data mt-5">
-                            <div class="pricing-image">
-                                <div class="pricing-image-box"> 
-									<img src="images/pricing/p3.jpg" class="img-fluid common-transition" alt="">
-								</div>
-                            </div>
-                            <div class="pricing-desc">
-                                <h3>Facials</h3>
-								<p>Lorem Ipsum is simply the printing industry.</p>
-								<span class="price">$20</span>
-							</div>
-                        </div>
-                    </div>
-					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="pricing-data mt-5">
-                            <div class="pricing-image">
-                                <div class="pricing-image-box"> 
-									<img src="images/pricing/p4.jpg" class="img-fluid common-transition" alt="">
-								</div>
-                            </div>
-                            <div class="pricing-desc">
-                                <h3>Waxing</h3>
-								<p>Lorem Ipsum is simply the printing industry.</p>
-								<span class="price">$20</span>
-							</div>
-                        </div>
-                    </div>
-					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="pricing-data mt-5">
-                            <div class="pricing-image">
-                                <div class="pricing-image-box"> 
-									<img src="images/pricing/p5.jpg" class="img-fluid common-transition" alt="">
-								</div>
-                            </div>
-                            <div class="pricing-desc">
-                                <h3>Hands & Feet</h3>
-								<p>Lorem Ipsum is simply the printing industry.</p>
-								<span class="price">$20</span>
-							</div>
-                        </div>
-                    </div>
-					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="pricing-data mt-5">
-                            <div class="pricing-image">
-                                <div class="pricing-image-box"> 
-									<img src="images/pricing/p6.jpg" class="img-fluid common-transition" alt="">
-								</div>
-                            </div>
-                            <div class="pricing-desc">
-                                <h3>Rest & Relaxation</h3>
-								<p>Lorem Ipsum is simply the printing industry.</p>
-								<span class="price">$20</span>
-							</div>
-                        </div>
-                    </div>
+					@endforeach
                 </div>
             </div>
         </section>
