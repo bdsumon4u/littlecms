@@ -750,5 +750,21 @@
         <script src="js/clock.js"></script>
         <!-- Custom Js -->		
         <script src="js/custom.js"></script>
+		
+		@if($whatsapp = $social['whatsapp'] ?? '')
+		<script src="js/wa.js"></script>
+		<script>
+			new WAChatBox({
+				link: "https://wa.me/{{$whatsapp}}",
+				user: {
+					name: "{{setting('site_name')}}",
+					avatar: "https://randomuser.me/api/portraits/women/20.jpg",
+					status: "Typically replies within an hour",
+				},
+				text: `Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓`,
+				button_text: "Need Help?",
+			});
+		</script>
+		@endif
     </body>
 </html>
