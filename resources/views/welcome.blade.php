@@ -11,7 +11,6 @@
         <link rel="shortcut icon" href="/storage/{{setting('site_favicon')}}">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,300&family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 		<!-- Bootstrap Css -->
         <link rel="stylesheet" href="css/bootstrap.min.css">		
 		<!-- Font-awesome Css -->
@@ -35,9 +34,8 @@
 			<![endif]-->
     </head>	
     <body data-spy="scroll" data-target=".navbar" data-offset="120" id="topbar">
-	
 		<!-- Start Preloader -->
-		<div class="preloader">
+		<div class="preloader d-none">
 			<div class="loader"> 
 				<span class="light"></span> 
 				<span></span> 
@@ -47,12 +45,14 @@
 		</div>
 		<!-- End Preloader -->
 		
+		@php($more = setting('more_configs'))
+		
         <!-- Start Navbar -->
     	<nav class="navbar navbar-expand-lg custom-navbar" id="navigation">
 			<div class="container">
-				<div class="logo">
+				<a href="/" class="logo">
 					<img src="/storage/{{setting('site_logo')}}" class="nav-img img-fluid" alt="Logo">
-				</div>
+				</a>
                 <div class="bar-toggler">
 				    <div class="bar1"></div>
 					<div class="bar2"></div>
@@ -60,34 +60,14 @@
 				</div>				  
                 <div class="right-navigation collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link page-scroll" href="#topbar">Home</a>
-                        </li>
-						<li class="nav-item">
-                            <a class="nav-link page-scroll" href="#services">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link page-scroll" href="#about">About</a>
-                        </li>
-						<li class="nav-item">
-                            <a class="nav-link page-scroll" href="#team-sec">Team</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link page-scroll" href="#pricing">Pricing</a>
-                        </li>
-						<li class="nav-item">
-                            <a class="nav-link page-scroll" href="#client">Client</a>
-                        </li>
-						<li class="nav-item">
-                            <a class="nav-link page-scroll" href="#gallery">Gallery</a>
-                        </li>
-						<li class="nav-item d-none">
-                            <a class="nav-link page-scroll" href="#blog">Blog</a>
-                        </li>	
-						<li class="nav-item">
-                            <a class="nav-link page-scroll" href="#appointment">Appointment</a>
-                        </li>
-						<li class="nav-item"><a class="nav-link page-scroll nav-btn" href="#contact">Contact Now</a></li>
+						@foreach($sections = ['service', 'about', 'people', 'pricing', 'client', 'images', 'videos', 'blog', 'appointment'] as $section)
+							@if(Arr::get($more, $section.'.is_active', false))
+							<li class="nav-item">
+								<a class="nav-link page-scroll" href="#{{$section}}">{{Arr::get($more, $section.'.label')}}</a>
+							</li>
+							@endif
+						@endforeach
+						<li class="nav-item"><a class="nav-link page-scroll nav-btn" href="#contact">{{Arr::get($more, 'label')}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -98,16 +78,14 @@
 		<div class="menu-bar navbar common-transition">		  
 			<div class="menu-bar-data">
 				<ul>
-					<li><a class="nav-link page-scroll" href="#topbar">Home</a></li>
-					<li><a class="nav-link page-scroll" href="#services">Services</a></li>
-					<li><a class="nav-link page-scroll" href="#about">About</a></li>
-					<li><a class="nav-link page-scroll" href="#team-sec">Team</a></li>
-					<li><a class="nav-link page-scroll" href="#pricing">pricing</a></li>
-					<li><a class="nav-link page-scroll" href="#client">Client</a></li>
-					<li><a class="nav-link page-scroll" href="#gallery">Gallery</a></li>
-					<li class="d-none"><a class="nav-link page-scroll" href="#blog">Blog</a></li>
-					<li><a class="nav-link page-scroll" href="#appointment">Appointment</a></li>
-					<li><a class="nav-link page-scroll" href="#contact">Contact Now</a></li>
+					@foreach($sections as $section)
+						@if(Arr::get($more, $section.'.is_active', false))
+						<li class="nav-item">
+							<a class="nav-link page-scroll" href="#{{$section}}">{{Arr::get($more, $section.'.label')}}</a>
+						</li>
+						@endif
+					@endforeach
+					<li><a class="nav-link page-scroll" href="#contact">Arr::get($more, 'label')</a></li>
 				</ul>
 			</div>
 		</div>
@@ -141,9 +119,19 @@
         </section>
         <!-- End Home -->
 		
+		@if(Arr::get($more, 'service.is_active', false))
 		<!-- Start service -->
-		<section class="section service" id="services">
+		<section class="section service" id="service">
 			<div class="container">
+				@if($title = Arr::get($more, 'service.title'))
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="common-title">
+                            <h2>{{$title}}</h2>
+                        </div>
+                    </div>
+                </div>
+				@endif
 				<div class="row">
 					@foreach($services as $service)
 					<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
@@ -154,9 +142,11 @@
 							<div class="service-name">
 								<h3 class="m-0">{{$service->title}}</h3>
 								<p>{{$service->description}}</p>
-								<a href="tel:{{setting('support_phone')}}" class="custom-btn btn common-transition">
-							       Contact Us
+								@if($service->button_label)
+								<a href="{{$service->button_action}}" class="custom-btn btn common-transition">
+							       {{$service->button_label}}
 						        </a>
+								@endif
 							</div>
 						</div>						
 					</div>
@@ -165,33 +155,40 @@
 			</div>
 		</section>
 		<!-- End service -->
+		@endif
 
+		@if(Arr::get($more, 'about.is_active', false))
         <!-- Start About Us -->
         <section class="section about" id="about">
             <div class="container">
                 <div class="row"> 
 					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-						<img src="/storage/{{setting('site_logo')}}" class="img-fluid rounded" alt="Logo">
-                    </div>                
+						<img src="/storage/{{Arr::get($more, 'about.image', setting('site_logo'))}}" class="img-fluid rounded" alt="Logo">
+                    </div>
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
 						<div class="about-title">
-							<h3>Our Success Story</h3>
+							@if($title = Arr::get($more, 'about.title'))
+							<h3>{{$title}}</h3>
+							@endif
                             <h2>{{setting('site_name')}}</h2>
 						</div>
 						<p class="mt-3">{{setting('site_description')}}</p>
-						<a href="tel:{{setting('support_contact')}}" class="custom-btn btn common-transition">
+						@if($label = Arr::get($more, 'about.button_label'))
+						<a href="{{Arr::get($more, 'about.button_action')}}" class="custom-btn btn common-transition">
 						   Contact Us
 						</a>
+						@endif
 					</div>
                 </div>
             </div>
         </section>
         <!-- End About Us -->
+		@endif
 
 		<!-- Start Counter -->
-		<div class="section counter" id="counter">
+		<div class="section counter d-none" id="counter">
 			<div class="container">
-				<div class="row d-none">
+				<div class="row">
 					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 counter-data one">
 						<div class="counterarea">
 							<div class="counter-icon"><i class="fa fa-smile-o" aria-hidden="true"></i></div>
@@ -221,16 +218,19 @@
 		</div>
 		<!-- End Counter -->
 		
+		@if(Arr::get($more, 'people.is_active', false))
 		<!-- Start Team -->  
-        <section class="section team-sec" id="team-sec">
+        <section class="section team-sec" id="people">
             <div class="container">
+				@if($title = Arr::get($more, 'people.title'))
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="common-title">
-                            <h2>Our Smart Team</h2>
+                            <h2>{{$title}}</h2>
                         </div>
                     </div>
                 </div>
+				@endif
 				<div class="row">
 					@foreach($people as $person)
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
@@ -258,18 +258,22 @@
                 </div>
 			</div>
 		</section>
-		<!-- End Team --> 
+		<!-- End Team -->
+		@endif
 		
+		@if(Arr::get($more, 'pricing.is_active', false))
 		<!-- Start Pricing -->
-        <section class="section pricing parallaxie layer" id="pricing">
+        <section class="section pricing parallaxie layer" id="pricing" style="background-image: url(/storage/{{Arr::get($more, 'pricing.image')}})">
             <div class="container">
+				@if($title = Arr::get($more, 'pricing.title'))
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="common-title">
-                            <h2>Our Pricing</h2>
+                            <h2>{{$title}}</h2>
                         </div>
                     </div>
                 </div>
+				@endif
                 <div class="row">
 					@foreach($services as $service)
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -291,17 +295,21 @@
             </div>
         </section>
         <!-- End Pricing -->
+		@endif
 
+		@if(Arr::get($more, 'testimonial.is_active', false))
         <!-- Start Testimonial -->
         <section class="section testimonial" id="client">
             <div class="container">
+				@if($title = Arr::get($more, 'testimonial.title'))
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="common-title">
-                            <h2>150+ Happy Client</h2>
+                            <h2>{{$title}}</h2>
                         </div>
                     </div>
                 </div>
+				@endif
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="inner-testimonial owl-carousel">
@@ -325,47 +333,41 @@
                 </div>
             </div>
         </section>
-        <!-- End Testimonial -->	
+        <!-- End Testimonial -->
+		@endif	
 
+		@if(Arr::get($more, 'images.is_active', false))
 		<!-- Start Portfolio -->
-		<section class="section portfolio" id="gallery">
+		<section class="section portfolio" id="images">
 			<div class="container-fluid p-0">
+				@if($title = Arr::get($more, 'images.title'))
 				<div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="common-title">
-                            <h2>Latest <span class="common-color">Gallery</span></h2>
+                            <h2><span class="common-color">{{$title}}</span></h2>
                         </div>
                     </div>
                 </div>
+				@endif
 				<div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-						<div class="button-group filter-button-group">
+						<div class="button-group image-button-group filter-button-group">
 							<button class="active show_all" data-filter="*">show all</button>
-							@foreach($gallery as $group => $items)
-								<button class="#" data-filter=".{{$group}}">{{$group}}</button>
+							@foreach($images as $group => $items)
+								<button class="#" data-filter=".image-{{$group}}">{{$group}}</button>
 							@endforeach
 						</div>
 					</div>
                 </div>
 				<div class="row mt-5">
-					<div class="tab-grid">
-						@foreach($gallery as $group => $items)
+					<div class="image-tab tab-grid">
+						@foreach($images as $group => $items)
 							@foreach($items as $media)
-								@if($media->type == 'image')
-								<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item {{$group}}">
+								<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data image-item item image-{{$group}}">
 									<div class="portfolio-image">
 										<img src="/storage/{{$media->path}}" class="common-transition img-fluid" alt=""><a href="/storage/{{$media->path}}" class="img-zoom"><i class="fa fa-search" aria-hidden="true"></i></a>
 									</div>
 								</div>
-								@else
-								<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data item {{$group}}">
-									<div class="portfolio-image">
-										@php($link = str_replace('watch?v=', 'embed/', $media->path))
-										<iframe width="100%" height="400" src="{{$link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-										<a target="_blank" href="{{$link}}"><i class="fa fa-search" aria-hidden="true"></i></a>
-									</div>
-								</div>
-								@endif
 							@endforeach
 						@endforeach
 					</div>
@@ -381,24 +383,82 @@
 			</div>
 		</section>
 		<!-- End Portfolio -->
+		@endif
 		
+		@if(Arr::get($more, 'videos.is_active', false))
+		<!-- Start Portfolio -->
+		<section class="section portfolio" id="videos">
+			<div class="container-fluid p-0">
+				@if($title = Arr::get($more, 'videos.title'))
+				<div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="common-title">
+                            <h2><span class="common-color">{{$title}}</span></h2>
+                        </div>
+                    </div>
+                </div>
+				@endif
+				<div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="button-group video-button-group filter-button-group">
+							<button class="active show_all" data-filter="*">show all</button>
+							@foreach($videos as $group => $items)
+								<button class="#" data-filter=".video-{{$group}}">{{$group}}</button>
+							@endforeach
+						</div>
+					</div>
+                </div>
+				<div class="row mt-5">
+					<div class="video-tab tab-grid">
+						@foreach($videos as $group => $items)
+							@foreach($items as $media)
+								<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 portfolio-data video-item item video-{{$group}}">
+									<div class="portfolio-video">
+										<video src="/storage/{{$media->path}}" controls width="100%" height="400"></video>
+									</div>
+								</div>
+							@endforeach
+						@endforeach
+					</div>
+				</div>
+				<div class="row mt-5 d-none">
+					<div class="col-12">
+						<div class="home-button text-center">
+							<a href="#" class="btn custom-btn common-transition">View More 
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Portfolio -->
+		@endif
+		
+		@if(Arr::has($more, 'appointment.is_active', false))
 		<!-- Start Solution -->
-		<section class="section solution">
+		<section class="section solution" style="background-image: url(/storage/{{Arr::get($more, 'appointment.pre_bg_image')}})">
 			<div class="container">
 				<div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="common-title">
-                            <h2>Book Appontment</h2>
-                            <p class="common-desc mb-4 d-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non libero consectetur, blandit mauris eget, imperdiet nisl. Etiam commodo ex nec erat tempor varius.</p>
-							 <a href="#appointment" class="custom-btn two page-scroll btn common-transition">
-							      appoint Now
+							@if($title = Arr::get($more, 'appointment.pre_title'))
+                            <h2>{{$title}}</h2>
+							@endif
+							@if($text = Arr::get($more, 'appointment.pre_text'))
+                            <div class="common-desc mb-4">{!!$text!!}</div>
+							@endif
+							@if($button = Arr::get($more, 'appointment.pre_button_text'))
+							<a href="#appointment" class="custom-btn two page-scroll btn common-transition">
+							    {{$button}}
 						    </a>
+							@endif
 						</div>
                     </div>
                 </div>
 			</div>
 		</section>
         <!-- End Solution -->
+		@endif
 		
         <!-- Start Blog -->
 		<section class="section blog d-none" id="blog">
@@ -461,18 +521,21 @@
 		</section>
 		<!-- End Blog -->
 
+		@if(Arr::has($more, 'appointment.is_active', false))
         <!-- Start Appointment -->
-        <section class="section appointment parallaxie layer" id="appointment">
+        <section class="section appointment parallaxie layer" id="appointment" style="background-image: url(/storage/{{Arr::get($more, 'appointment.form_bg_image')}})">
             <div class="container">
+				@if($title = Arr::get($more, 'appointment.form_title'))
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="common-title">
-                            <h2>Make An Appointment</h2>
+                            <h2>{{$title}}</h2>
                         </div>
 					</div>
 				</div>
+				@endif
 				<div class="row mt-5">
-					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 d-none">
 						<div class="clock-section">
 							<span class="top-clock-frames"></span>
 							<span class="bottom-clock-frames"></span>
@@ -495,7 +558,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mx-auto">
 						<div class="appointment-form">
 							@if(session()->has('message'))
 							<div class="alert alert-success">
@@ -540,7 +603,7 @@
 								</div>
 								<div class="row mt-2">
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-										<button type="submit" class="btn custom-btn common-transition">Appoint Now</button>
+										<button type="submit" class="btn custom-btn common-transition">{{Arr::get($more, 'appointment.form_button_text')}}</button>
 									</div>
 								</div>
 							</form>
@@ -550,9 +613,8 @@
             </div>
         </section>
         <!-- End Appointment -->
+		@endif
 
-		@php($more = setting('more_configs'))
-		
 		@if($map = $more['map'] ?? '')
 		<!-- Start Map -->
         <div class="map" id="map">
@@ -586,8 +648,8 @@
 										<i class="fa fa-map-marker" aria-hidden="true"></i>
 									</div>
 									<div class="address-data">
-										<h4>Location</h4>
-										<h5>{!! $more['location'] ?? '' !!}</h5>
+										<h4>{{Arr::get($more, 'location_label')}}</h4>
+										<h5>{!! Arr::get($more, 'location') !!}</h5>
 									</div>
 								</div>
 							</div>
@@ -597,7 +659,7 @@
 										<i class="fa fa-envelope" aria-hidden="true"></i>
 									</div>
 									<div class="address-data">
-										<h4>Email</h4>
+										<h4>{{Arr::get($more, 'email_label')}}</h4>
 										<h5><a href="mailto:{{ setting('support_email') }}">{{ setting('support_email') }}</a></h5>
 									</div>
 								</div>
@@ -608,7 +670,7 @@
 										<i class="fa fa-phone" aria-hidden="true"></i>
 									</div>
 									<div class="address-data">
-										<h4>Phone</h4>
+										<h4>{{Arr::get($more, 'phone_label')}}</h4>
 										<h5><a href="tel:{{ setting('support_phone') }}">{{ setting('support_phone') }}</a></h5>
 									</div>
 								</div>
@@ -619,8 +681,8 @@
 										<i class="fa fa-clock-o" aria-hidden="true"></i>
 									</div>
 									<div class="address-data">
-										<h4>Hours</h4>
-										<h5>{!! $more['hours'] ?? '' !!}</h5>
+										<h4>{{Arr::get($more, 'hours_label')}}</h4>
+										<h5>{!! Arr::get($more, 'hours') !!}</h5>
 									</div>
 								</div>
 							</div>
@@ -628,15 +690,11 @@
 					</div>
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<ul class="menu">
-							<li><a href="#topbar"> Home</a></li>
-							<li><a href="#services"> Services</a></li>
-							<li><a href="#about"> About</a></li>
-							<li><a href="#team-sec"> Team</a></li>
-							<li><a href="#pricing"> Pricing</a></li>
-							<li><a href="#client"> Client</a></li>
-							<li><a href="#gallery"> Gallery</a></li>
-							<li class="d-none"><a href="#blog"> Blog</a></li>
-							<li><a href="#appointment"> Appointment</a></li>
+							@foreach($sections as $section)
+								@if(Arr::get($more, $section.'.is_active', false))
+								<li><a class="page-scroll" href="#{{$section}}">{{Arr::get($more, $section.'.label')}}</a></li>
+								@endif
+							@endforeach
 						</ul>
 					</div>
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 margin-b">
@@ -745,9 +803,9 @@
 		<script src="js/packery-mode.pkgd.min.js"></script>
 		<script src="js/imagesloaded.pkgd.js"></script>
 		<!-- Counter Js -->		
-        <script src="js/counter.js"></script>
+        {{-- <script src="js/counter.js"></script> --}}
 		<!-- Clock Js -->		
-        <script src="js/clock.js"></script>
+        {{-- <script src="js/clock.js"></script> --}}
         <!-- Custom Js -->		
         <script src="js/custom.js"></script>
 		

@@ -3,9 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TestimonialResource\Pages;
-use App\Filament\Resources\TestimonialResource\RelationManagers;
+use App\Filament\Resources\Widgets\SectionWidget;
 use App\Models\Testimonial;
-use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Textarea;
@@ -14,8 +13,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TestimonialResource extends Resource
 {
@@ -88,6 +85,16 @@ class TestimonialResource extends Resource
             'index' => Pages\ListTestimonials::route('/'),
             'create' => Pages\CreateTestimonial::route('/create'),
             'edit' => Pages\EditTestimonial::route('/{record}/edit'),
+        ];
+    }
+
+    /**
+     * @return array<class-string<Widget>>
+     */
+    public static function getWidgets(): array
+    {
+        return [
+            SectionWidget::make(['label' => 'client']),
         ];
     }
 }

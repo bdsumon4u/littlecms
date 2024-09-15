@@ -3,21 +3,17 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MediaResource\Pages;
-use App\Filament\Resources\MediaResource\RelationManagers;
+use App\Filament\Resources\Widgets\SectionWidget;
 use App\Models\Media;
-use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class MediaResource extends Resource
 {
@@ -44,12 +40,7 @@ class MediaResource extends Resource
                         ->placeholder('Enter the group of the media')
                         ->required(),
                 ])->columns(2),
-                
-                Textarea::make('path')
-                    ->placeholder('Enter youtube video link')
-                    ->required()
-                    ->hidden(fn (Get $get) => $get('type') !== 'video'),
-                
+
                 FileUpload::make('path')
                     ->label('')
                     ->image()
@@ -63,6 +54,13 @@ class MediaResource extends Resource
                     ])
                     ->required()
                     ->hidden(fn (Get $get) => $get('type') !== 'image'),
+
+                FileUpload::make('path')
+                    ->label('')
+                    ->placeholder('Upload a video or <span class="filepond--label-action" tabindex="0"> Browse </span>')
+                    ->acceptedFileTypes(['video/*'])
+                    ->required()
+                    ->hidden(fn (Get $get) => $get('type') !== 'video'),
             ]);
     }
 
@@ -106,6 +104,17 @@ class MediaResource extends Resource
             'index' => Pages\ListMedia::route('/'),
             'create' => Pages\CreateMedia::route('/create'),
             'edit' => Pages\EditMedia::route('/{record}/edit'),
+        ];
+    }
+
+    /**
+     * @return array<class-string<Widget>>
+     */
+    public static function getWidgets(): array
+    {
+        return [
+            SectionWidget::make(['label' => 'images']),
+            SectionWidget::make(['label' => 'videos']),
         ];
     }
 }

@@ -3,9 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ServiceResource\Pages;
-use App\Filament\Resources\ServiceResource\RelationManagers;
+use App\Filament\Resources\Widgets\SectionWidget;
 use App\Models\Service;
-use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Textarea;
@@ -14,8 +13,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ServiceResource extends Resource
 {
@@ -30,17 +27,22 @@ class ServiceResource extends Resource
                 Group::make([
                     TextInput::make('title')
                         ->placeholder('Enter the title of the service')
-                        ->required(),
-                    TextInput::make('price')
-                        ->placeholder('Enter the price of the service')
-                        ->required(),
+                        ->required()
+                        ->columnSpanFull(),
                     TextInput::make('duration')
-                        ->placeholder('Enter the duration of the service')
-                        ->required(),
+                        ->placeholder('Enter the duration of the service'),
+                    TextInput::make('price')
+                        ->placeholder('Enter the price of the service'),
                     Textarea::make('description')
                         ->placeholder('Enter the description of the service')
-                        ->required(),
-                ]),
+                        ->required()
+                        ->columnSpanFull(),
+                    TextInput::make('button_label')
+                        ->placeholder('Enter the button label of the service'),
+                    TextInput::make('button_action')
+                        ->placeholder('Enter the button action of the service'),
+                ])
+                    ->columns(2),
                 FileUpload::make('image')
                     ->label('')
                     ->image()
@@ -103,6 +105,16 @@ class ServiceResource extends Resource
             'index' => Pages\ListServices::route('/'),
             'create' => Pages\CreateService::route('/create'),
             'edit' => Pages\EditService::route('/{record}/edit'),
+        ];
+    }
+
+    /**
+     * @return array<class-string<Widget>>
+     */
+    public static function getWidgets(): array
+    {
+        return [
+            SectionWidget::make(['label' => static::getModelLabel()]),
         ];
     }
 }

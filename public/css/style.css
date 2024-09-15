@@ -589,8 +589,8 @@ ul.custom-drop-menu.dropdown-menu li a {
 	color: #ff957f;
 }
 .home .home-title {
-    font-size: 110px;
-    line-height: 110px;
+    font-size: 55px;
+    line-height: 55px;
 	font-family: 'Oswald', sans-serif;
     color: #1f152d;
 	margin-bottom: 30px;
@@ -1138,7 +1138,7 @@ ul.custom-drop-menu.dropdown-menu li a {
 
 /*==========================  START PRICING ============================*/
 .pricing{
-	background-image: url("../images/pricing-bg.jpg");
+	/* background-image: url("../images/pricing-bg.jpg"); */
 	text-align: center;
 	color: #fff;
 	position: relative;
@@ -1189,7 +1189,7 @@ ul.custom-drop-menu.dropdown-menu li a {
     display: block;
     line-height: 36px;
     margin-top: 6px;
-    color: #ff957f;
+    color: #333;
 	font-weight: 700;
 }
 .pricing h2 {
@@ -1457,7 +1457,7 @@ ul.custom-drop-menu.dropdown-menu li a {
 
 /*==========================  START SOLUTION ============================*/
 .solution{
-	background-image: url("../images/solution-bg.jpg");
+	/* background-image: url("../images/solution-bg.jpg"); */
 	text-align: center;
 	position:relative;
 	background-position: right;
@@ -1919,7 +1919,7 @@ ul.custom-drop-menu.dropdown-menu li a {
 
 /*==========================  START APPOINTMENT ============================*/
 .appointment{
-	background-image: url("../images/appointment-bg.jpg");
+	/* background-image: url("../images/appointment-bg.jpg"); */
 	text-align: center;
 	position: relative;
 }

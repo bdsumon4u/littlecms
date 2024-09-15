@@ -38,7 +38,7 @@ return [
                     'required' => false,
                     'rules' => 'nullable',
                 ],
-            ]
+            ],
         ],
     ],
 ];

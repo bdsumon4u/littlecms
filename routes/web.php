@@ -16,7 +16,8 @@ Route::get('/', function () {
         'services' => Service::all(),
         'people' => Person::all(),
         'testimonials' => Testimonial::all(),
-        'gallery' => Media::query()->get()->groupBy('group'),
+        'images' => Media::query()->where('type', 'image')->get()->groupBy('group'),
+        'videos' => Media::query()->where('type', 'video')->get()->groupBy('group'),
     ]);
 });
 
