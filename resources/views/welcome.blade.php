@@ -60,12 +60,17 @@
 				</div>				  
                 <div class="right-navigation collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
+						@foreach(menu('main') as $item)
+							<li class="nav-item">
+								<a class="nav-link page-scroll" href="{{$item->url}}">{{$item->title}}</a>
+							</li>
+						@endforeach
 						@foreach($sections = ['service', 'about', 'people', 'pricing', 'client', 'images', 'videos', 'blog', 'appointment'] as $section)
-							@if(Arr::get($more, $section.'.is_active', false))
+							{{-- @if(Arr::get($more, $section.'.is_active', false))
 							<li class="nav-item">
 								<a class="nav-link page-scroll" href="#{{$section}}">{{Arr::get($more, $section.'.label')}}</a>
 							</li>
-							@endif
+							@endif --}}
 						@endforeach
 						<li class="nav-item"><a class="nav-link page-scroll nav-btn" href="#contact">{{Arr::get($more, 'label')}}</a></li>
                     </ul>

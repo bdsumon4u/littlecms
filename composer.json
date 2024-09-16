@@ -6,10 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "datlechin/filament-menu-builder": "*",
         "filament/filament": "^3.2",
         "joaopaulolndev/filament-general-settings": "^1.0",
         "laravel/framework": "^11.9",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "z3d0x/filament-fabricator": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

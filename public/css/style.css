@@ -38,6 +38,7 @@ body {
     font-size: 16px;
     line-height: 18px;
     letter-spacing: .03em;
+    padding-top: 105px;
 }
 h1{
 	font-weight: 500;
@@ -282,7 +283,7 @@ section {
     z-index: 999;
     padding: 18px 0;
     position: fixed;
-    top: 15px;
+    top: 0;
     left: 15px;
     right: 15px;
 	border-bottom: 1px solid #eee;

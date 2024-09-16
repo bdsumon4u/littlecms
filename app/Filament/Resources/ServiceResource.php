@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ServiceResource\Pages;
-use App\Filament\Resources\Widgets\SectionWidget;
 use App\Models\Service;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
@@ -114,7 +113,7 @@ class ServiceResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            SectionWidget::make(['label' => static::getModelLabel()]),
+            //
         ];
     }
 }

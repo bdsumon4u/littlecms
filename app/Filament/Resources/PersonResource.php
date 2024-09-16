@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PersonResource\Pages;
-use App\Filament\Resources\Widgets\SectionWidget;
 use App\Models\Person;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
@@ -96,7 +95,7 @@ class PersonResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            SectionWidget::make(['label' => 'people']),
+            //
         ];
     }
 }

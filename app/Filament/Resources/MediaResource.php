@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MediaResource\Pages;
-use App\Filament\Resources\Widgets\SectionWidget;
 use App\Models\Media;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
@@ -113,8 +112,7 @@ class MediaResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            SectionWidget::make(['label' => 'images']),
-            SectionWidget::make(['label' => 'videos']),
+            //
         ];
     }
 }

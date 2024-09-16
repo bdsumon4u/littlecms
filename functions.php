@@ -1,5 +1,6 @@
 <?php
 
+use Datlechin\FilamentMenuBuilder\Models\Menu;
 use Joaopaulolndev\FilamentGeneralSettings\Models\GeneralSetting;
 
 if (! function_exists('setting')) {
@@ -10,5 +11,12 @@ if (! function_exists('setting')) {
         }
 
         return GeneralSetting::query()->value($key) ?? $default;
+    }
+}
+
+if (! function_exists('menu')) {
+    function menu(string $location, $default = []): mixed
+    {
+        return Menu::location($location)->menuItems ?? $default;
     }
 }

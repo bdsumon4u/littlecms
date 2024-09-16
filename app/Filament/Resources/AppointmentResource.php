@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AppointmentResource\Pages;
-use App\Filament\Resources\AppointmentResource\Widgets\AppointmentWidget;
 use App\Models\Appointment;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -99,7 +98,7 @@ class AppointmentResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            AppointmentWidget::class,
+            //
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Datlechin\FilamentMenuBuilder\MenuPanel\StaticMenuPanel;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -19,6 +21,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentGeneralSettings\FilamentGeneralSettingsPlugin;
+use Z3d0X\FilamentFabricator\FilamentFabricatorPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -32,6 +35,27 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->colors([
                 'primary' => Color::Neutral,
+            ])
+            ->plugins([
+                FilamentFabricatorPlugin::make(),
+                FilamentMenuBuilderPlugin::make()
+                    ->addLocations([
+                        'main' => 'Main',
+                    ])
+                    ->addMenuPanels([
+                        StaticMenuPanel::make()
+                            ->addMany([
+                                'Home' => '#home',
+                                'Service' => '#service',
+                                'About' => '#about',
+                                'Team' => '#team',
+                                'Price' => '#price',
+                                'Client' => '#client',
+                                'Images' => '#images',
+                                'Videos' => '#videos',
+                                'Appointment' => '#appointment',
+                            ]),
+                    ]),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

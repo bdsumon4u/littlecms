@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TestimonialResource\Pages;
-use App\Filament\Resources\Widgets\SectionWidget;
 use App\Models\Testimonial;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
@@ -94,7 +93,7 @@ class TestimonialResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            SectionWidget::make(['label' => 'client']),
+            //
         ];
     }
 }

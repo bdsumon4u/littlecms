@@ -10,16 +10,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome', [
-        'slides' => Slide::all(),
-        'services' => Service::all(),
-        'people' => Person::all(),
-        'testimonials' => Testimonial::all(),
-        'images' => Media::query()->where('type', 'image')->get()->groupBy('group'),
-        'videos' => Media::query()->where('type', 'video')->get()->groupBy('group'),
-    ]);
-});
+// Route::get('/', function () {
+//     return view('welcome', [
+//         'slides' => Slide::all(),
+//         'services' => Service::all(),
+//         'people' => Person::all(),
+//         'testimonials' => Testimonial::all(),
+//         'images' => Media::query()->where('type', 'image')->get()->groupBy('group'),
+//         'videos' => Media::query()->where('type', 'video')->get()->groupBy('group'),
+//     ]);
+// });
 
 Route::post('/appointments', function (Request $request) {
     $data = $request->validate([
