@@ -17,13 +17,13 @@
                 <div class="pricing-data mt-5">
                     <div class="pricing-image">
                         <div class="pricing-image-box"> 
-                            <img src="/storage/{{$service->image}}" class="img-fluid common-transition" alt="{{$service->title}}">
+                            <img src="/storage/{{$service['image']}}" class="img-fluid common-transition" alt="{{$service['title']}}">
                         </div>
                     </div>
                     <div class="pricing-desc">
-                        <h3>{{$service->title}}</h3>
-                        <p>{{$service->remark}}</p>
-                        <span class="price">{{$service->price}}</span>
+                        <h3>{{$service['title']}}</h3>
+                        <p>{{$service['remark']}}</p>
+                        <span class="price">{{$service['price']}}</span>
                     </div>
                 </div>
             </div>

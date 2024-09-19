@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="map-frame">
-                    {!! $map ?? \Arr::get(setting('extra_configs', 'map')) !!}
+                    {!! $map ?? \Arr::get(setting('more_configs'), 'map') !!}
                 </div>
             </div>
         </div>
