@@ -37,9 +37,6 @@
             </div>
             <div class="right-navigation collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    @foreach($sections = ['service', 'about', 'people', 'pricing', 'client', 'images', 'videos', 'blog', 'appointment'] as $section)
-                    @endforeach
-
                     @foreach($menuItems as $item)
                         <li class="nav-item">
                             <a class="nav-link page-scroll" target="{{$item->target??'_self'}}" href="{{$item->url}}">{{$item->title}}</a>

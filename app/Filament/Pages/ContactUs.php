@@ -21,7 +21,7 @@ class ContactUs extends Page
     public function mount(): void
     {
         $this->form->fill(
-            Arr::only(setting('more_configs'), [
+            Arr::only(setting('more_configs', []), [
                 'label', 'email_label', 'phone_label',
                 'location_label', 'location', 'hours_label', 'hours',
             ]) + [
@@ -93,7 +93,7 @@ class ContactUs extends Page
         setting()->update([
             'more_configs' => Arr::only($data, [
                 'label', 'email_label', 'phone_label', 'location_label', 'location', 'hours_label', 'hours',
-            ]) + setting('more_configs'),
+            ]) + setting('more_configs', []),
         ]);
 
         Notification::make()
