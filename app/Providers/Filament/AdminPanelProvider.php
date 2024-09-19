@@ -52,7 +52,7 @@ class AdminPanelProvider extends PanelProvider
                                 'About' => '#about',
                                 'Team' => '#team',
                                 'Price' => '#price',
-                                'Client' => '#client',
+                                'Client' => '#testimonial',
                                 'Images' => '#images',
                                 'Videos' => '#videos',
                                 'Appointment' => '#appointment',

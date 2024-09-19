@@ -7,11 +7,11 @@ use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 use Z3d0X\FilamentFabricator\PageBlocks\PageBlock;
 
-class ClientBlock extends PageBlock
+class TestimonialBlock extends PageBlock
 {
     public static function getBlockSchema(): Block
     {
-        return Block::make('client')
+        return Block::make('testimonial')
             ->schema([
                 TextInput::make('label')
                     ->label('Menu label')

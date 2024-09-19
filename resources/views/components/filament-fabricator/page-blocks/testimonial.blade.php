@@ -1,6 +1,6 @@
 @aware(['page'])
 <!-- Start Testimonial -->
-<section class="section testimonial" id="client">
+<section class="section testimonial" id="testimonial">
     <div class="container">
         @if($title)
         <div class="row">
