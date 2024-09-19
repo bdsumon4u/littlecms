@@ -17,21 +17,21 @@
                 <div class="team-data mt-5">
                     <div class="team-image-before"> 
                         <div class="team-image"> 
-                            <img src="/storage/{{$person->image}}" alt="{{$person->name}}" class="img-fluid common-transition">
+                            <img src="/storage/{{$person['image']}}" alt="{{$person['name']}}" class="img-fluid common-transition">
                         </div>
                     </div>
                     <div class="team-info">
-                        <h3 class="mb-0"><a href="#">{{$person->name}}</a></h3>
-                        <span>{{$person->designation}}</span> 
+                        <h3 class="mb-0"><a href="#">{{$person['name']}}</a></h3>
+                        <span>{{$person['designation']}}</span> 
                         <div class="team-inner d-none">
                             <ul>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>										
+                            </ul>
                         </div>
-                    </div>							
+                    </div>		
                 </div>
             </div>
             @endforeach
