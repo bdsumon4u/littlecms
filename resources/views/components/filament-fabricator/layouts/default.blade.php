@@ -38,9 +38,20 @@
             <div class="right-navigation collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     @foreach($menuItems as $item)
+                        @if($item->children->isNotEmpty())
+                        <li class="nav-item drop-li dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{$item->url}}">{{$item->title}} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <ul class="custom-drop-menu dropdown-menu">
+                                @foreach($item->children as $item)
+                                <li><a target="{{$item->target??'_self'}}" href="{{$item->url}}">{{$item->title}}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        @else
                         <li class="nav-item">
                             <a class="nav-link page-scroll" target="{{$item->target??'_self'}}" href="{{$item->url}}">{{$item->title}}</a>
                         </li>
+                        @endif
                     @endforeach
                     <li class="nav-item"><a class="nav-link page-scroll nav-btn" href="#contact">{{Arr::get($more, 'label')}}</a></li>
                 </ul>
