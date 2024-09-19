@@ -28,8 +28,8 @@ class ServiceResource extends Resource
                         ->placeholder('Enter the title of the service')
                         ->required()
                         ->columnSpanFull(),
-                    TextInput::make('duration')
-                        ->placeholder('Enter the duration of the service'),
+                    TextInput::make('remark')
+                        ->placeholder('Enter the remark of the service'),
                     TextInput::make('price')
                         ->placeholder('Enter the price of the service'),
                     Textarea::make('description')
@@ -73,8 +73,8 @@ class ServiceResource extends Resource
                     ->label('Price')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('duration')
-                    ->label('Duration')
+                Tables\Columns\TextColumn::make('remark')
+                    ->label('Remark')
                     ->searchable()
                     ->sortable(),
             ])

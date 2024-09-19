@@ -290,7 +290,7 @@
                             </div>
                             <div class="pricing-desc">
                                 <h3>{{$service->title}}</h3>
-								<p>{{$service->duration}}</p>
+								<p>{{$service->remark}}</p>
 								<span class="price">{{$service->price}}</span>
 							</div>
                         </div>
