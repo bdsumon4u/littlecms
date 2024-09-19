@@ -19,11 +19,11 @@
                         <div class="mt-5">
                             <div class="testimonial-detail">
                                 <div class="testimonial-img">
-                                    <img src="/storage/{{$testimonial->image}}" alt="{{$testimonial->name}}" class="img-fluid">
+                                    <img src="/storage/{{$testimonial['image']}}" alt="{{$testimonial['name']}}" class="img-fluid">
                                 </div> 
-                                <span class="client-name text-center">{{$testimonial->name}}</span>
+                                <span class="client-name text-center">{{$testimonial['name']}}</span>
                                 <div class="testimonial-desc">									
-                                    <p class="client-review">{{$testimonial->speech}}</p>									
+                                    <p class="client-review">{{$testimonial['speech']}}</p>									
                                 </div>
                             </div>
                         </div>
