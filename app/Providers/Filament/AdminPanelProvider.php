@@ -11,7 +11,9 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Facades\FilamentView;
 use Filament\Tables\Table;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -98,5 +100,12 @@ class AdminPanelProvider extends PanelProvider
         Table::$defaultDateDisplayFormat = 'd-M-Y';
         Table::$defaultTimeDisplayFormat = 'h:i A';
         Table::$defaultDateTimeDisplayFormat = 'd-M-Y h:i A';
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::TOPBAR_START,
+            fn () => '<a href="/" target="_blank" class="flex items-center space-x-2 text-sm font-medium text-gray-900 hover:text-gray-900 transition-colors duration-200">
+                <span>Visit Site</span>
+            </a>',
+        );
     }
 }
