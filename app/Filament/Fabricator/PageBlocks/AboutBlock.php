@@ -56,8 +56,6 @@ class AboutBlock extends PageBlock
 
     public static function mutateData(array $data): array
     {
-        return $data + [
-            'site_description' => setting('site_description'),
-        ];
+        return $data;
     }
 }

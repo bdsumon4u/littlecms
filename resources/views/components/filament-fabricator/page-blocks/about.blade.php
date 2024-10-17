@@ -13,7 +13,7 @@
                     @endif
                     <h2>{{setting('site_name')}}</h2>
                 </div>
-                <p class="mt-3">{{$site_description ?? setting('site_description')}}</p>
+                <p class="mt-3">{{$siteDescription ?? setting('site_description')}}</p>
                 @if($buttonLabel)
                 <a href="{{$buttonAction}}" class="custom-btn btn common-transition">
                     {{$buttonLabel}}
