@@ -59,6 +59,7 @@ class MediaResource extends Resource
                     ->placeholder('Upload a video or <span class="filepond--label-action" tabindex="0"> Browse </span>')
                     ->acceptedFileTypes(['video/*'])
                     ->required()
+                    ->maxSize(200*1024)
                     ->hidden(fn (Get $get) => $get('type') !== 'video'),
             ]);
     }
